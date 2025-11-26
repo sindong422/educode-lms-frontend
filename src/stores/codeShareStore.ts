@@ -20,8 +20,8 @@ import { useAuthStore } from './authStore'
 export const useCodeShareStore = defineStore('codeShare', () => {
   const authStore = useAuthStore()
 
-  // 교사 코드 공유 상태 (기본값: true)
-  const shareCodeEditor = ref(getStorageBoolean(STORAGE_KEYS.SHARE_CODE_EDITOR, true))
+  // 교사 코드 공유 상태 (기본값: false)
+  const shareCodeEditor = ref(getStorageBoolean(STORAGE_KEYS.SHARE_CODE_EDITOR, false))
 
   // 공유 코드 내용
   const sharedCodeContent = ref(getStorageItem(STORAGE_KEYS.CODE_CONTENT) || '')
@@ -178,7 +178,7 @@ export const useCodeShareStore = defineStore('codeShare', () => {
     pollingInterval = setInterval(() => {
       if (authStore.isTeacher) return
 
-      const currentShareCode = getStorageBoolean(STORAGE_KEYS.SHARE_CODE_EDITOR, true)
+      const currentShareCode = getStorageBoolean(STORAGE_KEYS.SHARE_CODE_EDITOR, false)
       if (shareCodeEditor.value !== currentShareCode) {
         shareCodeEditor.value = currentShareCode
       }

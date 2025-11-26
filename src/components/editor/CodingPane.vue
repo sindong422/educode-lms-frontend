@@ -45,8 +45,8 @@ let cursorPollingInterval = null // 커서 위치 폴링 인터벌
 const TEACHER_CURSOR_COLOR = '#ef4444' // 빨간색 (교사)
 const STUDENT_CURSOR_COLOR = '#a855f7' // 보라색 (학생)
 
-// 교사 코드 탭 표시 여부 (학생 + 집중 모드 + 코드 공유 ON)
-const showTeacherTab = computed(() => !syncStore.isTeacher && syncStore.focusMode && syncStore.shareCodeEditor)
+// 교사 코드 탭 표시 여부 (학생 + 코드 공유 ON)
+const showTeacherTab = computed(() => !syncStore.isTeacher && syncStore.shareCodeEditor)
 
 // 공유된 학생 코드 탭 표시 여부 (학생 전용 + 공유된 학생이 자기 자신이 아닐 때)
 const showSharedStudentTab = computed(() => {

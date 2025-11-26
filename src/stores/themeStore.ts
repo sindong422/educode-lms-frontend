@@ -8,9 +8,9 @@ type Theme = 'dark' | 'light'
  * 다크/라이트 테마 관리
  */
 export const useThemeStore = defineStore('theme', () => {
-  // Initialize from localStorage or default to 'dark'
+  // Initialize from localStorage or default to 'light'
   const savedTheme = localStorage.getItem('theme') as Theme | null
-  const theme = ref<Theme>(savedTheme || 'dark')
+  const theme = ref<Theme>(savedTheme || 'light')
 
   function applyTheme(newTheme: Theme): void {
     if (newTheme === 'light') {

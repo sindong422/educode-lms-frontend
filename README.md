@@ -133,6 +133,7 @@ export const POLLING_INTERVAL = 300  // 300ms 간격으로 폴링
 |------|:----:|:----:|
 | 집중 모드 제어 | O | X |
 | 화이트보드 그리기 | O | X (읽기 전용) |
+| 코드 공유 | O | X (읽기 전용) |
 | 학생 코드 모니터링 | O | X |
 | 레슨 단계 변경 | O | X |
 | 코드 작성 | O | O |
@@ -167,6 +168,24 @@ UI에서는 "집중학습"으로 표시됩니다. 교사가 활성화하면:
 - 학생 화면 너비가 교사 콘텐츠 너비보다 작은 경우:
   - 콘텐츠 영역에 좌우 스크롤 발생
   - 실습(코딩) 영역은 유지됨 (데스크톱: 최소 200px, 모바일: 탭 전환)
+
+### 3-1. 코드 공유
+
+교사가 자신의 코드를 학생들과 공유할 수 있습니다.
+
+**특징:**
+- **집중학습과 독립적**: 집중학습 모드 On/Off와 관계없이 코드 공유가 가능
+- **기본값**: 공유 안함 (OFF)
+- **공유 시**: 학생 화면의 실습 영역에 "교사 코드" 탭이 표시됨
+- **읽기 전용**: 학생은 교사 코드를 볼 수만 있고 수정 불가
+
+**동작:**
+| 집중학습 | 코드 공유 | 학생에게 교사 코드 탭 표시 |
+|:--------:|:--------:|:--------------------------:|
+| OFF | OFF | X |
+| OFF | ON | O |
+| ON | OFF | X |
+| ON | ON | O |
 
 ### 4. 목차 및 전체 커리큘럼
 
@@ -246,7 +265,7 @@ UI에서는 "집중학습"으로 표시됩니다. 교사가 활성화하면:
 |--------|------|------|
 | Auth | authStore.ts | 교사/학생 역할 설정 |
 | FocusMode | focusModeStore.ts | 집중 모드 상태, 스크롤 위치 |
-| CodeShare | codeShareStore.ts | 코드 공유 활성화 상태 |
+| CodeShare | codeShareStore.ts | 코드 공유 상태 (기본값: OFF) |
 | Whiteboard | whiteboardStore.ts | 페이지별 판서 경로, 현재 그리기 상태 |
 | Student | studentStore.ts | 학생 목록, 학생별 코드 |
 | Lesson | lessonStore.ts | 현재 레슨 단계, 콘텐츠 |
@@ -369,7 +388,7 @@ syncStore.setTeacherRole(false)  // 또는 true
 ## CSS 변수 (테마)
 
 ```css
-/* 다크 모드 (기본) */
+/* 다크 모드 */
 --bg-primary: #0f172a;
 --bg-secondary: #1e293b;
 --bg-tertiary: #334155;
@@ -393,7 +412,7 @@ syncStore.setTeacherRole(false)  // 또는 true
 --shadow-xl: 0 10px 25px rgba(0, 0, 0, 0.5);
 --overlay-bg: rgba(0, 0, 0, 0.6);
 
-/* 라이트 모드 */
+/* 라이트 모드 (기본) */
 --bg-primary: #ffffff;
 --bg-secondary: #f8fafc;
 --bg-tertiary: #e2e8f0;
